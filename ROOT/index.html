@@ -63,7 +63,7 @@
           <h2 >
             Aiming to embody the essence of 'brownie points' by striving to have minimal financial value, emphasizing the importance of recognition and goodwill over monetary worth in the world of cryptocurrency. Just kidding!
             <BR>
-            Hash Power <span id="hash-rate" >--0</span> Blocks <span id="block-count" >--0</span>
+            Hash Power <span id="hash-rate" >--0</span> Blocks <span id="block-count" >--0</span> Blocks <span id="total-supply" >--0</span>
           </h2>
           <a href="https://browniecoins.org" class="btn-get-started scrollto">Sign-Up</a>
         </div>
@@ -119,9 +119,27 @@
                   console.error('Error fetching hash rate:', error);
               });
       }
+
+      function updateTotalSupply() {
+          // Make an HTTP GET request to the API
+          fetch('https://api.browniecoins.org/gettxoutsetinfo.jsp')
+              .then(response => response.json())
+              .then(data => {
+                  // Extract the total_amount from the API response
+                  const totalAmount = data.total_amount;
+
+                  // Update the <span> element with the total_amount value
+                  document.getElementById('total-supply').textContent = totalAmount;
+              })
+              .catch(error => {
+                  console.error('Error fetching data:', error);
+              });
+      }
       // Call the function to update the hash rate initially
       updateHashRate();
       updateBlockCount();
+      updateTotalSupply();
+      setInterval(updateTotalSupply, 60000);
       setInterval(updateBlockCount, 60000);
       // You can also set an interval to periodically update the hash rate (e.g., every 60 seconds)
       setInterval(updateHashRate, 60000); // 60000 milliseconds = 60 seconds
