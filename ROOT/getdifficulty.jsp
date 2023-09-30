@@ -7,7 +7,7 @@
 
   String rm = "getHashRate: ";
                         try{
-                              Process pweb3 = new ProcessBuilder("/root/browniecoins/src/brownie-cli", "getdifficulty").start();
+                              Process pweb3 = new ProcessBuilder("/va/lib/tomcat9/tomcat/brownie-cli", "getdifficulty").start();
                               String stderr = IOUtils.toString(pweb3.getErrorStream(), Charset.defaultCharset());
                               String stdout = IOUtils.toString(pweb3.getInputStream(), Charset.defaultCharset());
                               rm = stdout + stderr + " TEST ";
