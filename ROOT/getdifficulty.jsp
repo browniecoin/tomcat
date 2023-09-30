@@ -5,7 +5,7 @@
 <%@ page import="java.io.FileWriter" %>
 <%@ page import="java.io.BufferedWriter" %><%
 
-  String rm = "getHashRate: ";
+  String rm = "";
                         try{
                               ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "getdifficulty");
                               processBuilder.directory(new File("/var/lib/tomcat9/tomcat/src/"));
@@ -13,9 +13,9 @@
                               String stderr = IOUtils.toString(pweb3.getErrorStream(), Charset.defaultCharset());
                               String stdout = IOUtils.toString(pweb3.getInputStream(), Charset.defaultCharset());
 
-                              rm = stdout + stderr + " TEST ";
+                              rm = stdout + stderr;
                           }catch(IOException ex){
                               rm = ex.getMessage();
                           }
             //eM.sendMail(entity.getEmail(), request.getParameter("subject"), request.getParameter("orderCom"));
-%>TEST UPDATE :  - DONE <%=rm%> DONE
+%><%=rm%>

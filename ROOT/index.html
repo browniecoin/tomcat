@@ -87,8 +87,8 @@
           <h1>
             BrownieCoin.eth
           </h1>
-          <h2>
-            Transform your life with style and ease - join Brownie Coin today!
+          <h2 >
+            Transform your life with style and ease - <span id="hash-rate" >--0</span> join Brownie Coin today!
           </h2>
           <a href="signup.jsp" class="btn-get-started scrollto">Sign-Up</a>
         </div>
@@ -96,7 +96,7 @@
     </div>
 
   </section><!-- End Hero -->
- 
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -120,6 +120,26 @@
 
     gtag('config', 'G-38FLR1VWNS');
   </script>
+  <script>
+      // Function to fetch and update the hash rate
+      function updateHashRate() {
+          fetch('https://api.browniecoins.org/getdifficulty.jsp')
+              .then(response => response.text())
+              .then(data => {
+                  // Update the content of the span with the retrieved hash rate data
+                  document.getElementById('hash-rate').textContent = data;
+              })
+              .catch(error => {
+                  console.error('Error fetching hash rate:', error);
+              });
+      }
+
+      // Call the function to update the hash rate initially
+      updateHashRate();
+
+      // You can also set an interval to periodically update the hash rate (e.g., every 60 seconds)
+      setInterval(updateHashRate, 60000); // 60000 milliseconds = 60 seconds
+  </script>  
 </body>
 
 </html>
