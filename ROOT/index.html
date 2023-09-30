@@ -58,7 +58,7 @@
       <div class="row">
         <div class="col-xl-6">
           <h1>
-            Status <span id="hash-rate" >--0</span> 
+            Power <span id="hash-rate" >--0</span> Blocks <span id="block-count" >--0</span>
           </h1>
           <h2 >
             Transform your life with style and ease - join Brownie Coin today!
@@ -106,10 +106,21 @@
                   console.error('Error fetching hash rate:', error);
               });
       }
-
+      function updateBlockCount() {
+          fetch('https://api.browniecoins.org/getblockcount.jsp')
+              .then(response => response.text())
+              .then(data => {
+                  // Update the content of the span with the retrieved hash rate data
+                  document.getElementById('block-count').textContent = data;
+              })
+              .catch(error => {
+                  console.error('Error fetching hash rate:', error);
+              });
+      }
       // Call the function to update the hash rate initially
       updateHashRate();
-
+      updateBlockCount();
+      setInterval(updateBlockCount, 60000);
       // You can also set an interval to periodically update the hash rate (e.g., every 60 seconds)
       setInterval(updateHashRate, 60000); // 60000 milliseconds = 60 seconds
   </script>
