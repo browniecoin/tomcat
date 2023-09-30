@@ -1,12 +1,6 @@
 <%@ page language="java" import="java.lang.Thread,org.apache.commons.io.IOUtils,org.apache.commons.io.output.*,java.nio.charset.Charset,java.io.*,java.util.*,java.awt.image.BufferedImage,javax.imageio.ImageIO,java.io.OutputStream,java.io.FileInputStream,java.io.File"%>
-<%@page import="java.io.FileOutputStream"%>
-<%@ page import="com.tfnlab.mysql.Order" %>
-<%@ page import="com.tfnlab.mysql.OrderDao" %>
-<%@ page import="com.tfnlab.mysql.User"%>
-<%@ page import="com.tfnlab.mysql.UserDao" %>
+<%@page import="java.io.FileOutputStream"%> 
 <%@ page import="java.util.UUID" %>
-<%@ page import="com.tfnlab.mysql.Entity" %>
-<%@ page import="com.tfnlab.mysql.EntityDao" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.io.FileWriter" %>
 <%@ page import="java.io.BufferedWriter" %>
