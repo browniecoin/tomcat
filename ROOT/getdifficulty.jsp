@@ -1,8 +1,4 @@
 <%@ page language="java" import="java.lang.Thread,org.apache.commons.io.IOUtils,org.apache.commons.io.output.*,java.nio.charset.Charset,java.io.*,java.util.*,java.awt.image.BufferedImage,javax.imageio.ImageIO,java.io.OutputStream,java.io.FileInputStream,java.io.File"%>
-<%@page import="com.itextpdf.kernel.pdf.PdfDocument"%>
-<%@page import="com.itextpdf.kernel.pdf.PdfWriter"%>
-<%@page import="com.itextpdf.layout.Document"%>
-<%@page import="com.itextpdf.layout.element.Paragraph"%>
 <%@page import="java.io.FileOutputStream"%>
 <%@ page import="com.tfnlab.mysql.Order" %>
 <%@ page import="com.tfnlab.mysql.OrderDao" %>
