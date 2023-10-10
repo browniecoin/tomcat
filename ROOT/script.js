@@ -13,7 +13,7 @@ async function fetchData() {
         // Check if the data starts with a double quote and a [
         if (textData.startsWith('"[') && textData.endsWith(']"')) {
             // Remove both the leading and trailing double quotes
-            const cleanedData = textData.slice(2, -2);
+            const cleanedData = textData.slice(1, -1);
 
             const jsonData = JSON.parse(cleanedData); // Parse the cleaned data as JSON
             return jsonData; // The data should be an array of objects
