@@ -62,9 +62,5 @@ function createLineChart(data) {
 
 // Fetch data and create the chart
 fetchData().then(data => {
-    if (Array.isArray(data)) {
-        createLineChart(data);
-    } else {
-        console.error('Invalid data format:', data);
-    }
+   createLineChart(data);
 });
