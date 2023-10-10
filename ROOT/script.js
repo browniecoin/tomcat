@@ -5,7 +5,12 @@ const url = 'https://browniecoins.org/home/coin_stats/';
 async function fetchData() {
     try {
         const response = await fetch(url);
-        const jsonData = await response.json(); // Parse the data as JSON
+
+        const textData = await response.text();
+        const cleanedData = textData.substring(1, textData.length - 1);
+
+        const jsonData = JSON.parse(cleanedData);
+
         return jsonData; // The data should be an array of objects
     } catch (error) {
         console.error('Error fetching data:', error);
