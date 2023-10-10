@@ -2131,3 +2131,10 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+#hashPowerChart {
+    width: 100%;
+    height: auto; /* Automatically adjust the height to maintain aspect ratio */
+    padding: 15px; /* Add 5 pixels of padding to all sides of the canvas */
+
+}
