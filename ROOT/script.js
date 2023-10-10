@@ -15,7 +15,10 @@ async function fetchData() {
             // Remove both the leading and trailing double quotes
             const cleanedData = textData.slice(1, -1);
 
-            const jsonData = JSON.parse(cleanedData); // Parse the cleaned data as JSON
+            // Convert the cleaned data into a valid JSON string
+            const validJSONString = cleanedData.replace(/\\"/g, '"');
+
+            const jsonData = JSON.parse(validJSONString); // Parse the valid JSON string
             return jsonData; // The data should be an array of objects
         } else {
             console.error('Data does not start and end with a double quote and a [:', textData);
