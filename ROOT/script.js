@@ -7,7 +7,9 @@ async function fetchData() {
         const response = await fetch(url);
 
         const textData = await response.text();
+        alert(textData);
         const cleanedData = textData.substring(1, textData.length - 1);
+        alert(cleanedData);
 
         const jsonData = JSON.parse(cleanedData);
 
