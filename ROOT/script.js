@@ -24,7 +24,7 @@ function createLineChart(data) {
     for (const line of lines) {
         const parts = line.split(','); // Assuming data is comma-separated
         if (parts.length === 3) {
-            const timestamp = new Date(parts[0]);
+            const timestamp = moment(parts[0]); // Use Moment.js to parse the timestamp
             const hashPower = parseFloat(parts[2]);
             timestamps.push(timestamp);
             hashPowerValues.push(hashPower);
