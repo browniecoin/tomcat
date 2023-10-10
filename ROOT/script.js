@@ -9,9 +9,10 @@ async function fetchData() {
         const textData = await response.text();
         alert(textData);
         const cleanedData = textData.substring(1, textData.length - 1);
-        alert(cleanedData);
+        const cleanedData2 = cleanedData.substring(1, cleanedData.length - 1);
+        alert(cleanedData2);
 
-        const jsonData = JSON.parse(cleanedData);
+        const jsonData = JSON.parse(cleanedData2);
 
         return jsonData; // The data should be an array of objects
     } catch (error) {
