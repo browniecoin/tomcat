@@ -6,25 +6,17 @@ async function fetchData() {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        return data;
+        return data; // The data should be an array of objects
     } catch (error) {
         console.error('Error fetching data:', error);
         return [];
     }
 }
 
-// Function to extract timestamps and current hash power from the JSON data
-function extractChartData(data) {
-    return data.map(entry => ({
-        timestamp: new Date(entry.fields.timestamp),
-        hashPower: entry.fields.current_hash_power
-    }));
-}
-
 // Function to create and update the line chart
 function createLineChart(data) {
-    const timestamps = data.map(entry => entry.timestamp);
-    const hashPowerValues = data.map(entry => entry.hashPower);
+    const timestamps = data.map(entry => new Date(entry.fields.timestamp));
+    const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
 
     const ctx = document.getElementById('hashPowerChart').getContext('2d');
 
@@ -67,6 +59,10 @@ function createLineChart(data) {
 
 // Fetch data and create the chart
 fetchData().then(data => {
-    const chartData = extractChartData(data);
-    createLineChart(chartData);
+    if (Array.isArray(data)) {
+        const chartData = data;
+        createLineChart(chartData);
+    } else {
+        console.error('Invalid data format:', data);
+    }
 });
