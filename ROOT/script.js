@@ -14,10 +14,7 @@ async function fetchData() {
     }
 }
 
-// Function to create and update the line chart
 function createLineChart(data) {
-    alert(entry.fields.timestamp);
-    alert(entry.fields.current_hash_power);
     const timestamps = data.map(entry => new Date(entry.fields.timestamp));
     const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
 
@@ -59,6 +56,7 @@ function createLineChart(data) {
 
     new Chart(ctx, chartConfig);
 }
+
 
 // Fetch data and create the chart
 fetchData().then(data => {
