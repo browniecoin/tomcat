@@ -12,7 +12,6 @@ async function fetchData() {
         return [];
     }
 }
-// Function to create and update the line chart
 function createLineChart(data) {
     const timestamps = data.map(entry => new Date(entry.fields.timestamp));
     const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
@@ -59,8 +58,7 @@ function createLineChart(data) {
 // Fetch data and create the chart
 fetchData().then(data => {
     if (Array.isArray(data)) {
-        const chartData = data; // No need to further process data
-        createLineChart(chartData);
+        createLineChart(data); // Use the data directly
     } else {
         console.error('Invalid data format:', data);
     }
