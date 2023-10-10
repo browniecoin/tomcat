@@ -5,23 +5,35 @@ const url = 'https://browniecoins.org/home/coin_stats/';
 async function fetchData() {
     try {
         const response = await fetch(url);
-
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         const textData = await response.text();
-        alert(textData);
-        const cleanedData = textData.substring(1, textData.length - 1);
-        const cleanedData2 = cleanedData.substring(1, cleanedData.length - 1);
-        alert(cleanedData2);
 
-        const jsonData = JSON.parse(cleanedData2);
+        // Check if the data starts with a double quote and a [
+        if (textData.startsWith('"[') && textData.endsWith(']"')) {
+            // Remove both the leading and trailing double quotes
+            const cleanedData = textData.slice(2, -2);
 
-        return jsonData; // The data should be an array of objects
+            const jsonData = JSON.parse(cleanedData); // Parse the cleaned data as JSON
+            return jsonData; // The data should be an array of objects
+        } else {
+            console.error('Data does not start and end with a double quote and a [:', textData);
+            return [];
+        }
     } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching or parsing data:', error);
         return [];
     }
 }
 
 function createLineChart(data) {
+    // Check if data is an array before using map
+    if (!Array.isArray(data)) {
+        console.error('Data is not an array:', data);
+        return;
+    }
+
     // Extract timestamp and hash power data from the JSON objects
     const timestamps = data.map(entry => new Date(entry.fields.timestamp));
     const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
