@@ -5,13 +5,16 @@ const url = 'https://browniecoins.org/home/coin_stats/';
 async function fetchData() {
     try {
         const response = await fetch(url);
-        const data = await response.json();
+        const textData = await response.text();
+        const data = JSON.parse(textData);
         return data; // The data should be an array of objects
     } catch (error) {
         console.error('Error fetching data:', error);
         return [];
     }
 }
+
+// Function to create and update the line chart
 function createLineChart(data) {
     const timestamps = data.map(entry => new Date(entry.fields.timestamp));
     const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
@@ -58,7 +61,7 @@ function createLineChart(data) {
 // Fetch data and create the chart
 fetchData().then(data => {
     if (Array.isArray(data)) {
-        createLineChart(data); // Use the data directly
+        createLineChart(data);
     } else {
         console.error('Invalid data format:', data);
     }
