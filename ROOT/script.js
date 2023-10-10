@@ -1,35 +1,22 @@
-// Define the URL to fetch plain text data
+// Define the URL to fetch JSON data
 const url = 'https://browniecoins.org/home/coin_stats/';
 
-// Function to fetch plain text data from the URL
+// Function to fetch JSON data from the URL
 async function fetchData() {
     try {
         const response = await fetch(url);
-        const textData = await response.text();
-        return textData; // The data should be plain text
+        const jsonData = await response.json(); // Parse the data as JSON
+        return jsonData; // The data should be an array of objects
     } catch (error) {
         console.error('Error fetching data:', error);
-        return '';
+        return [];
     }
 }
 
 function createLineChart(data) {
-    // Split the plain text into lines by newline characters
-    const lines = data.split('\n');
-
-    // Process the lines to extract timestamp and hash power data
-    const timestamps = [];
-    const hashPowerValues = [];
-
-    for (const line of lines) {
-        const parts = line.split(','); // Assuming data is comma-separated
-        if (parts.length === 3) {
-            const timestamp = moment(parts[0]); // Use Moment.js to parse the timestamp
-            const hashPower = parseFloat(parts[2]);
-            timestamps.push(timestamp);
-            hashPowerValues.push(hashPower);
-        }
-    }
+    // Extract timestamp and hash power data from the JSON objects
+    const timestamps = data.map(entry => new Date(entry.fields.timestamp));
+    const hashPowerValues = data.map(entry => entry.fields.current_hash_power);
 
     // Create the line chart
     const ctx = document.getElementById('hashPowerChart').getContext('2d');
