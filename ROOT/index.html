@@ -78,6 +78,51 @@
     </div>
 
   </section><!-- End Hero -->
+
+<div class="p-5">
+  <form id="brownieForm">
+      <label for="recipient_address">Recipient Address:</label>
+      <input type="text" id="recipient_address" name="recipient_address" required><br><br>
+
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" name="amount" required><br><br>
+
+      <input type="button" value="Send Brownie Coin" onclick="sendBrownieCoins()">
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+      function sendBrownieCoins() {
+          var recipientAddress = document.getElementById("recipient_address").value;
+          var amount = document.getElementById("amount").value;
+
+          // Create a new XMLHttpRequest object
+          var xhr = new XMLHttpRequest();
+
+          // Define the callback function to handle the response
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                  // Display the response in the 'result' div
+                  document.getElementById("result").innerHTML = xhr.responseText;
+              }
+          };
+
+          // Open a POST request to your Java code (replace 'your-java-endpoint' with the actual endpoint)
+          xhr.open("POST", "your-java-endpoint", true);
+
+          // Set the request headers (if needed)
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+          // Construct the request data
+          var data = "recipient_address=" + recipientAddress + "&amount=" + amount;
+
+          // Send the request
+          xhr.send(data);
+      }
+  </script>
+</div><!-- End Hero -->
+
   <div class="p-5">
     <canvas id="hashPowerChart" ></canvas>
   </div><!-- End Hero -->
