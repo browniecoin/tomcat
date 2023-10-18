@@ -39,10 +39,10 @@ function createSupplyLineChart(data) {
 
     // Extract timestamp and hash power data from the JSON objects
     const timestamps = data.map(entry => new Date(entry.fields.timestamp));
-    const hashPowerValues = data.map(entry => entry.fields.coin_supply);
+    const coin_supply = data.map(entry => entry.fields.coin_supply);
 
     // Create the line chart
-    const ctx = document.getElementById('coin_supplyChart').getContext('2d');
+    const ctx = document.getElementById('coinSupplyChart').getContext('2d');
 
     const chartData = {
         labels: timestamps,
@@ -50,7 +50,7 @@ function createSupplyLineChart(data) {
             {
                 label: 'Current Coin Supply',
                 borderColor: 'blue',
-                data: hashPowerValues,
+                data: coin_supply,
                 fill: false,
             },
         ],
