@@ -6,7 +6,7 @@
 <%@ page import="java.io.BufferedWriter" %><%
 
   String rm = "";
-
+  String networkhashpsValue = "0.0";
                         try{
                               ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "getmininginfo");
                               processBuilder.directory(new File("/var/lib/tomcat9/tomcat/src/"));
@@ -27,17 +27,17 @@
                               startIndex += targetKey.length();
 
                               // Find the ending index of the value
-                              int endIndex = jsonString.indexOf(",", startIndex);
+                              int endIndex = rm.indexOf(",", startIndex);
 
                               if (endIndex == -1) {
                                   // If there's no comma, assume it's the end of the JSON object
-                                  endIndex = jsonString.indexOf("}", startIndex);
+                                  endIndex = rm.indexOf("}", startIndex);
                               }
 
                               if (endIndex != -1) {
                                   // Extract the "networkhashps" value
-                                  rm = jsonString.substring(startIndex, endIndex).trim();
-                                  System.out.println("networkhashps: " + rm);
+                                  networkhashpsValue = rm.substring(startIndex, endIndex).trim();
+                                  System.out.println("networkhashps: " + networkhashpsValue);
                               } else {
                                   System.out.println("Failed to find the end of the value for 'networkhashps'");
                               }
@@ -45,4 +45,4 @@
                               System.out.println("Key 'networkhashps' not found in the JSON string.");
                           }
             //eM.sendMail(entity.getEmail(), request.getParameter("subject"), request.getParameter("orderCom"));
-%><%=rm%>
+%><%=networkhashpsValue%>
