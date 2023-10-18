@@ -1,9 +1,4 @@
-<%@ page language="java" import="java.lang.Thread,org.apache.commons.io.IOUtils,org.apache.commons.io.output.*,java.nio.charset.Charset,java.io.*,java.util.*,java.awt.image.BufferedImage,javax.imageio.ImageIO,java.io.OutputStream,java.io.FileInputStream,java.io.File"%>
-<%@page import="java.io.FileOutputStream"%>
-<%@ page import="java.util.UUID" %>
-<%@ page import="java.io.File" %>
-<%@ page import="java.io.FileWriter" %>
-<%@ page import="java.io.BufferedWriter" %><%
+<%@ page language="java" import="java.lang.Thread,org.apache.commons.io.IOUtils,org.apache.commons.io.output.*,java.nio.charset.Charset,java.io.*,java.util.*,java.awt.image.BufferedImage,javax.imageio.ImageIO,java.io.OutputStream,java.io.FileInputStream,java.io.File"%><%@page import="java.io.FileOutputStream"%><%@ page import="java.util.UUID" %><%@ page import="java.io.File" %><%@ page import="java.io.FileWriter" %><%@ page import="java.io.BufferedWriter" %><%
 
   String rm = "";
   String networkhashpsValue = "0.0";
