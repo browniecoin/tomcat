@@ -4,7 +4,7 @@ const url_mining_supply = 'https://browniecoins.org/home/coin_stats/';
 // Function to fetch JSON data from the URL
 async function fetchMiningData() {
     try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const response = await fetch(url_mining_supply);
         if (!response.ok) {
             throw new Error('Network response was not ok');
