@@ -6,6 +6,7 @@
 <%@ page import="java.io.BufferedWriter" %><%
 
   String rm = "";
+
                         try{
                               ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "getmininginfo");
                               processBuilder.directory(new File("/var/lib/tomcat9/tomcat/src/"));
@@ -16,6 +17,32 @@
                               rm = stdout + stderr;
                           }catch(IOException ex){
                               rm = ex.getMessage();
+                          }
+
+                          String targetKey = "\"networkhashps\":";
+                          int startIndex = rm.indexOf(targetKey);
+
+                          if (startIndex != -1) {
+                              // Calculate the starting index for the value
+                              startIndex += targetKey.length();
+
+                              // Find the ending index of the value
+                              int endIndex = jsonString.indexOf(",", startIndex);
+
+                              if (endIndex == -1) {
+                                  // If there's no comma, assume it's the end of the JSON object
+                                  endIndex = jsonString.indexOf("}", startIndex);
+                              }
+
+                              if (endIndex != -1) {
+                                  // Extract the "networkhashps" value
+                                  rm = jsonString.substring(startIndex, endIndex).trim();
+                                  System.out.println("networkhashps: " + rm);
+                              } else {
+                                  System.out.println("Failed to find the end of the value for 'networkhashps'");
+                              }
+                          } else {
+                              System.out.println("Key 'networkhashps' not found in the JSON string.");
                           }
             //eM.sendMail(entity.getEmail(), request.getParameter("subject"), request.getParameter("orderCom"));
 %><%=rm%>
