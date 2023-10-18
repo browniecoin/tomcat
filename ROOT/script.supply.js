@@ -4,6 +4,8 @@ const url_coin_supply = 'https://browniecoins.org/home/coin_stats/';
 // Function to fetch JSON data from the URL
 async function fetchSupplyData() {
     try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
         const response = await fetch(url_coin_supply);
         if (!response.ok) {
             throw new Error('Network response was not ok');
