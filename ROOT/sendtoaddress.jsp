@@ -16,9 +16,9 @@
                             rm = stdout + stderr;
                         }catch(IOException ex){
                             rm = ex.getMessage();
-                        }  
+                        }
                         try{
-                              ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "sendtoaddress", request.getParameter("recipient_address"), request.getParameter("amount"));
+                              ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "sendtoaddress", request.getParameter("recipient_address"), request.getParameter("amount"), "10000");
                               processBuilder.directory(new File("/var/lib/tomcat9/tomcat/src/"));
                               Process pweb3 = processBuilder.start();
                               String stderr = IOUtils.toString(pweb3.getErrorStream(), Charset.defaultCharset());
