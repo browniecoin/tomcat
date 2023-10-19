@@ -91,7 +91,7 @@
     Guess the next magic number and enter it in the text box to win a prize! <input type="text" id="next_magic_key" name="next_magic_key" maxlength="1">
     <input type="hidden" id="next_magic_key_cbc" name="next_magic_key_cbc" value="0">
     <BR><BR>
-    <span id="magic-key-win-math" ></span>
+    <span id="magic-key-win-match-type" ></span><span id="magic-key-win-match" ></span>
   </div><!-- End Hero -->
 <div class="p-5 mt-1">
   <h3>Send Brownie Coin</h3>
@@ -149,6 +149,7 @@
     inputElement.addEventListener("input", function() {
       // Change the background color to orange when the input value is edited
       document.getElementById('magic-key-win-math').textContent = "";
+      document.getElementById('magic-key-win-match-type').textContent = "";
       inputElement.style.backgroundColor = "orange";
       document.getElementById("next_magic_key_cbc").value = document.getElementById('block-count').textContent
     });
@@ -242,13 +243,20 @@
                     if (magicKey.textContent === nextMagicKeyInput.value) {
                         // Set input field to green
                         nextMagicKeyInput.style.backgroundColor = 'green';
-                        document.getElementById('magic-key-win-math').textContent = "Won";
+                        document.getElementById('magic-key-win-match').textContent = "Won";
                     } else {
                         // Set input field to red
                         nextMagicKeyInput.style.backgroundColor = 'red';
-                        document.getElementById('magic-key-win-math').textContent = "Lost";
+                        document.getElementById('magic-key-win-match').textContent = "Lost";
                     }
                     document.getElementById("next_magic_key_cbc").value  = "0";
+                  }
+                  if (!isNaN(magicKey.textContent) && !isNaN(nextMagicKeyInput.value)) {
+                    document.getElementById('magic-key-win-match-type').textContent = "Won";
+                  }else if (isNaN(magicKey.textContent) && isNaN(nextMagicKeyInput.value)) {
+                    document.getElementById('magic-key-win-match-type').textContent = "Won";
+                  }else {
+                    document.getElementById('magic-key-win-match-type').textContent = "LOST";
                   }
               })
               .catch(error => {
