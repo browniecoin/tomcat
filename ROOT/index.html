@@ -201,17 +201,18 @@
                   console.error('Error fetching data:', error);
               });
       }
+
       function updateMV() {
           // Make an HTTP GET request to the API
           fetch('https://api.browniecoins.org/getLastblockhash.jsp')
-              .then(response => response.json())
+              .then(response => response.text())
               .then(data => {
                   // Extract the total_amount from the API response
 
-                  //const lastCharacter = data.charAt(data.length - 1);
+                  const lastCharacter = data.charAt(data.length - 1);
 
                   // Update the <span> element with the last character of totalAmount
-                  document.getElementById('magic-key').textContent = data;
+                  document.getElementById('magic-key').textContent = lastCharacter;
               })
               .catch(error => {
                   console.error('Error fetching data:', error);
