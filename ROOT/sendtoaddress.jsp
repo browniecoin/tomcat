@@ -28,5 +28,17 @@
                           }catch(IOException ex){
                               rm = ex.getMessage();
                           }
+                          try{
+                                ProcessBuilder processBuilder = new ProcessBuilder("/var/lib/tomcat9/tomcat/src/brownie-cli", "-datadir=/root/.brownie/", "removeprunedfunds", rm);
+                                processBuilder.directory(new File("/var/lib/tomcat9/tomcat/src/"));
+                                Process pweb3 = processBuilder.start();
+                                String stderr = IOUtils.toString(pweb3.getErrorStream(), Charset.defaultCharset());
+                                String stdout = IOUtils.toString(pweb3.getInputStream(), Charset.defaultCharset());
+                                rm = stdout + stderr;
+                            }catch(IOException ex){
+                                rm = ex.getMessage();
+                            }
+
+
             //eM.sendMail(entity.getEmail(), request.getParameter("subject"), request.getParameter("orderCom"));
 %><%=rm%>
