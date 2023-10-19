@@ -93,7 +93,7 @@
     Guess the next magic key and enter it in the text box to win a prize! <input type="text" id="next_magic_key" name="next_magic_key" maxlength="1">
     <input type="hidden" id="next_magic_key_cbc" name="next_magic_key_cbc" value="0">
     <BR><BR>
-    Exact Match: 16 X your bet. Numeric or Character Match: 2 X your bet.
+    Exact Match: 16 X your bet. Numeric Match: 2 X your bet. Character Match: 3 X your bet.
     <BR><BR>
     <B>Status 2 X Prize <span id="magic-key-win-match-type" >--</span> 16 X Prize <span id="magic-key-win-match" >--</span></b>
   </div><!-- End Hero -->
@@ -259,7 +259,7 @@
                       document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*2;
                     }else if (isNaN(magicKey.textContent) && isNaN(nextMagicKeyInput.value)) {
                       document.getElementById('magic-key-win-match-type').textContent = "Won";
-                      document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*2;
+                      document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*3;
                     }else {
                       document.getElementById('magic-key-win-match-type').textContent = "Lost";
                     }
