@@ -249,14 +249,14 @@
                         nextMagicKeyInput.style.backgroundColor = 'red';
                         document.getElementById('magic-key-win-match').textContent = "Lost";
                     }
+                    if (!isNaN(magicKey.textContent) && !isNaN(nextMagicKeyInput.value)) {
+                      document.getElementById('magic-key-win-match-type').textContent = "Won";
+                    }else if (isNaN(magicKey.textContent) && isNaN(nextMagicKeyInput.value)) {
+                      document.getElementById('magic-key-win-match-type').textContent = "Won";
+                    }else {
+                      document.getElementById('magic-key-win-match-type').textContent = "LOST";
+                    }
                     document.getElementById("next_magic_key_cbc").value  = "0";
-                  }
-                  if (!isNaN(magicKey.textContent) && !isNaN(nextMagicKeyInput.value)) {
-                    document.getElementById('magic-key-win-match-type').textContent = "Won";
-                  }else if (isNaN(magicKey.textContent) && isNaN(nextMagicKeyInput.value)) {
-                    document.getElementById('magic-key-win-match-type').textContent = "Won";
-                  }else {
-                    document.getElementById('magic-key-win-match-type').textContent = "LOST";
                   }
               })
               .catch(error => {
