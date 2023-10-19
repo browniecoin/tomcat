@@ -208,9 +208,9 @@
               .then(response => response.text())
               .then(data => {
                   // Extract the total_amount from the API response
-
+                  alert(data);
                   const lastCharacter = data.charAt(data.length - 1);
-
+                  alert(lastCharacter);
                   // Update the <span> element with the last character of totalAmount
                   document.getElementById('magic-key').textContent = lastCharacter;
               })
