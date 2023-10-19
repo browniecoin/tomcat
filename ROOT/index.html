@@ -78,6 +78,7 @@
             Current Magic Key <span id="magic-key" >--0</span>
             <BR><BR>
             Guess the next magic number and enter it in the text box to win a prize! <input type="text" id="next_magic_key" name="next_magic_key" maxlength="1">
+            <input type="hidden" id="next_magic_key_cbc" name="next_magic_key_cbc" value="0">
           </h2>
 
         </div>
@@ -142,6 +143,7 @@
     inputElement.addEventListener("input", function() {
       // Change the background color to orange when the input value is edited
       inputElement.style.backgroundColor = "orange";
+      document.getElementById("next_magic_key_cbc").value = document.getElementById('block-count').textContent
     });
   </script>
 </div><!-- End Hero -->
@@ -229,13 +231,15 @@
                   const nextMagicKeyInput = document.getElementById('next_magic_key');
 
                   magicKey.textContent = lastCharacter;
-
-                  if (magicKey.textContent === nextMagicKeyInput.value) {
-                      // Set input field to green
-                      nextMagicKeyInput.style.backgroundColor = 'green';
-                  } else {
-                      // Set input field to red
-                      nextMagicKeyInput.style.backgroundColor = 'red';
+                  if (document.getElementById("next_magic_key_cbc").value != "0" && document.getElementById("next_magic_key_cbc").value != document.getElementById('block-count').textContent){
+                    if (magicKey.textContent === nextMagicKeyInput.value) {
+                        // Set input field to green
+                        nextMagicKeyInput.style.backgroundColor = 'green';
+                    } else {
+                        // Set input field to red
+                        nextMagicKeyInput.style.backgroundColor = 'red';
+                    }
+                    document.getElementById("next_magic_key_cbc").value  = "0";
                   }
               })
               .catch(error => {
