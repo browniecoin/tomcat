@@ -206,10 +206,9 @@
           fetch('https://api.browniecoins.org/getLastblockhash.jsp')
               .then(response => response.json())
               .then(data => {
-                  // Extract the total_amount from the API response
-                  const totalAmount = data.total_amount;
+                  // Extract the total_amount from the API response 
 
-                  const lastCharacter = totalAmount.charAt(totalAmount.length - 1);
+                  const lastCharacter = data.charAt(data.length - 1);
 
                   // Update the <span> element with the last character of totalAmount
                   document.getElementById('magic-key').textContent = lastCharacter;
