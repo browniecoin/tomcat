@@ -34,7 +34,11 @@
   <script src="script.js"></script>
   <script src="script.supply.js"></script>
   <script src="script.mininginfo.js"></script>
-
+  <style>
+    #next_magic_key {
+      width: 2ch; /* Set the width to accommodate two characters (two "0" characters) */
+    }
+  </style>
   <!-- =======================================================
   * Template Name: Presento - v3.9.1
   * Template URL: https://bootstrapmade.com/presento-bootstrap-corporate-template/
@@ -73,7 +77,11 @@
             Coin Supply <span id="total-supply" >--0</span> Blocks Mined <span id="block-count" >--0</span> Current Hash Power <span id="hash-rate" >--0</span>
             Current Magic Key <span id="magic-key" >--0</span>
 
-            Next Magic Key <input type="text" id="next_magic_key" name="next_magic_key">
+            Next Magic Key <input type="text" id="next_magic_key" name="next_magic_key" maxlength="1">
+
+
+
+            In this code, we set the width of the input field to be 2ch, which is a CSS unit that represents the width of the "0" character. This will ensure that the input field is wide enough to display two characters but still limit the input to only one character due to the maxlength attribute.
 
           </h2>
 
@@ -140,7 +148,7 @@
       // Change the background color to orange when the input value is edited
       inputElement.style.backgroundColor = "orange";
     });
-  </script>  
+  </script>
 </div><!-- End Hero -->
 
   <div class="p-5">
