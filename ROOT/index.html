@@ -82,44 +82,49 @@
 <div class="p-5">
   <h3>Online Wallet</h3>
   <form id="brownieForm">
+      <label for="privkey">Private Key:</label>
+      <input type="text" id="privkey" name="privkey"><br><br>
+
       <label for="recipient_address">Recipient Address:</label>
-      <input type="text" id="recipient_address" name="recipient_address" required><br><br>
+      <input type="text" id="recipient_address" name="recipient_address"><br><br>
 
       <label for="amount">Amount:</label>
-      <input type="text" id="amount" name="amount" required><br><br>
+      <input type="text" id="amount" name="amount"><br><br>
 
-      <input type="button" value="Send Brownie Coin" onclick="sendBrownieCoins()">
+      <input type="submit" value="Submit">
   </form>
 
-  <div id="result"></div>
+  <div id="output"></div>
 
   <script>
-      function sendBrownieCoins() {
-          var recipientAddress = document.getElementById("recipient_address").value;
-          var amount = document.getElementById("amount").value;
+      document.getElementById("brownieForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+          callBrownie();
+      });
 
-          // Create a new XMLHttpRequest object
-          var xhr = new XMLHttpRequest();
+      async function callBrownie() {
+          const privkey = document.getElementById("privkey").value;
+          const recipient_address = document.getElementById("recipient_address").value;
+          const amount = document.getElementById("amount").value;
 
-          // Define the callback function to handle the response
-          xhr.onreadystatechange = function () {
-              if (xhr.readyState === 4 && xhr.status === 200) {
-                  // Display the response in the 'result' div
-                  document.getElementById("result").innerHTML = xhr.responseText;
+          try {
+              const response = await fetch("/your-servlet-url", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                  body: `privkey=${privkey}&recipient_address=${recipient_address}&amount=${amount}`,
+              });
+
+              if (response.ok) {
+                  const result = await response.text();
+                  document.getElementById("output").textContent = result;
+              } else {
+                  document.getElementById("output").textContent = "Error: " + response.status;
               }
-          };
-
-          // Open a POST request to your Java code (replace 'your-java-endpoint' with the actual endpoint)
-          xhr.open("POST", "your-java-endpoint", true);
-
-          // Set the request headers (if needed)
-          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-          // Construct the request data
-          var data = "recipient_address=" + recipientAddress + "&amount=" + amount;
-
-          // Send the request
-          xhr.send(data);
+          } catch (error) {
+              document.getElementById("output").textContent = "An error occurred: " + error;
+          }
       }
   </script>
 </div><!-- End Hero -->
