@@ -209,21 +209,33 @@
               .then(data => {
                   // Extract the total_amount from the API response
                   const lastCharacter = data.trim().charAt(data.trim().length - 1);
-                  document.getElementById('magic-key').textContent = lastCharacter;
+                  const magicKey = document.getElementById('magic-key');
+                  const nextMagicKeyInput = document.getElementById('next_magic_key');
+
+                  magicKey.textContent = lastCharacter;
+
+                  if (magicKey.textContent === nextMagicKeyInput.value) {
+                      // Set input field to green
+                      nextMagicKeyInput.style.backgroundColor = 'green';
+                  } else {
+                      // Set input field to red
+                      nextMagicKeyInput.style.backgroundColor = 'red';
+                  }
               })
               .catch(error => {
                   console.error('Error fetching data:', error);
               });
       }
+
       // Call the function to update the hash rate initially
       updateHashRate();
       updateBlockCount();
       updateTotalSupply();
       updateMV();
-      setInterval(updateTotalSupply, 60000);
-      setInterval(updateBlockCount, 60000);
+      setInterval(updateTotalSupply, 5000);
+      setInterval(updateBlockCount, 5000);
       // You can also set an interval to periodically update the hash rate (e.g., every 60 seconds)
-      setInterval(updateHashRate, 60000); // 60000 milliseconds = 60 seconds
+      setInterval(updateHashRate, 5000); // 60000 milliseconds = 60 seconds
       setInterval(updateMV, 5000); // 60000 milliseconds = 60 seconds
   </script>
 </body>
