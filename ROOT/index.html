@@ -86,6 +86,8 @@
 
   <div class="p-5 mt-3">
     <h3>Play Game</h3>
+    <p>Welcome to Brownie Coin! Simply by visiting our website, you've already earned <span id="magic-key-point" >1</span> Brownie Coin. Play and win more – your adventure starts now!
+    </p>
     Current Magic Key <span id="magic-key" >--0</span>
     <BR><BR>
     Guess the next magic key and enter it in the text box to win a prize! <input type="text" id="next_magic_key" name="next_magic_key" maxlength="1">
@@ -246,6 +248,7 @@
                         // Set input field to green
                         nextMagicKeyInput.style.backgroundColor = 'green';
                         document.getElementById('magic-key-win-match').textContent = "Won";
+                        document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*16;
                     } else {
                         // Set input field to red
                         nextMagicKeyInput.style.backgroundColor = 'red';
@@ -253,8 +256,10 @@
                     }
                     if (!isNaN(magicKey.textContent) && !isNaN(nextMagicKeyInput.value)) {
                       document.getElementById('magic-key-win-match-type').textContent = "Won";
+                      document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*2;
                     }else if (isNaN(magicKey.textContent) && isNaN(nextMagicKeyInput.value)) {
                       document.getElementById('magic-key-win-match-type').textContent = "Won";
+                      document.getElementById('magic-key-point').textContent = parseInt(document.getElementById('magic-key-point').textContent)*2;
                     }else {
                       document.getElementById('magic-key-win-match-type').textContent = "Lost";
                     }
