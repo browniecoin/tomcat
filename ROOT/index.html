@@ -208,10 +208,7 @@
               .then(response => response.text())
               .then(data => {
                   // Extract the total_amount from the API response
-                  alert(data.trim());
                   const lastCharacter = data.trim().charAt(data.trim().length - 1);
-                  alert(lastCharacter);
-                  // Update the <span> element with the last character of totalAmount
                   document.getElementById('magic-key').textContent = lastCharacter;
               })
               .catch(error => {
@@ -227,7 +224,7 @@
       setInterval(updateBlockCount, 60000);
       // You can also set an interval to periodically update the hash rate (e.g., every 60 seconds)
       setInterval(updateHashRate, 60000); // 60000 milliseconds = 60 seconds
-      setInterval(updateMV, 10000); // 60000 milliseconds = 60 seconds
+      setInterval(updateMV, 5000); // 60000 milliseconds = 60 seconds
   </script>
 </body>
 
